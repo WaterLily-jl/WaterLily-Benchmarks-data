@@ -1,0 +1,22 @@
+--- a/cases.jl
++++ b/cases.jl
+@@ -10,7 +10,8 @@
+         i==2 && return  U*cos(x)*sin(y)*cos(z)
+         return 0*U
+     end
+-    Simulation((L, L, L), (0, 0, 0), 1/κ; U, u0, ν, T, mem=backend)
++    ic = pkgversion(WaterLily) < v"1.8" ? (; uλ=u0) : (; u0) # `u0` was named `uλ` before WaterLily 1.8
++    Simulation((L, L, L), (0, 0, 0), 1/κ; U, ν, T, mem=backend, ic...)
+ end
+ 
+ function sphere(p, backend; Re=3700, U=1, T=Float32)
+--- a/benchmark.sh
++++ b/benchmark.sh
+@@ -103,6 +103,7 @@
+     # Pkg is loaded before activating: with --project, a Manifest from Julia <= 1.12 breaks `using Pkg` on 1.13.
+     full_args=(-e "using Pkg; Pkg.activate(\"$THIS_DIR\"); Pkg.develop(PackageSpec(path=get(ENV, \"WATERLILY_DIR\", \"\"))); Pkg.update();")
+     julia_cmd
++    mkdir -p "$DATA_DIR/manifests"; cp "$THIS_DIR/Manifest.toml" "$DATA_DIR/manifests/Manifest_${wl_version}_${backend}_rep${rep}_$(date +%H%M%S).toml" # scratch copy only
+ }
+ 
+ run_benchmark () {
