@@ -1,6 +1,6 @@
 # WaterLily releases v1.6.1, v1.7.0, v1.8.0 and master
 
-Benchmarks of four WaterLily versions on the WaterLily-Benchmarks cases `tgv`, `sphere` and `jelly`, and the kinetic energy and dissipation of the Taylor-Green vortex at Re=1600 for the same versions. Measured on 2026-09-27. Reported in: <!-- issue link -->
+Benchmarks of four WaterLily versions on the WaterLily-Benchmarks cases `tgv`, `sphere` and `jelly`, and the kinetic energy and dissipation of the Taylor-Green vortex at Re=1600 for the same versions. Measured on 2026-09-27. Reported in [WaterLily.jl#335](https://github.com/WaterLily-jl/WaterLily.jl/issues/335).
 
 ## Hardware and software
 
